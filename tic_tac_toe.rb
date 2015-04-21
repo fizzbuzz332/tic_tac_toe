@@ -17,7 +17,6 @@ module TicTacToe
       puts "Begin!!!"
       until @game_over
         print_board
-        puts "write 'h' for help"
         get_user_move
         check_game_over
       end
@@ -50,6 +49,7 @@ module TicTacToe
     end
 
     def get_user_move
+      puts "Write 'h' for help"
       user_move = gets.chomp
       case user_move
       when "h"
@@ -61,7 +61,20 @@ module TicTacToe
     end
 
     def make_move(user_move)
+      until validate_user_move(user_move)
+        puts "Invalid move."
+        get_user_move
+      end
       @board[user_move[0].to_i][user_move[2].to_i] = @user_symbol
+    end
+
+    def validate_user_move(user_move)
+      first = user_move[0]
+      second = user_move[2]
+      if (["0", "1", "2"].include? first) && (["0", "1", "2"].include? second)
+        return true
+      end
+      return false
     end
 
     def make_computer_move
