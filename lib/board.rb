@@ -22,6 +22,14 @@ module TicTacToe
       return check_horizontal || check_vertical || check_diagonal
     end
 
+    def print_board
+      @board.each do |row|
+        formatted_row = ""
+        row.each { |column| formatted_row += (column + " ") }
+        puts formatted_row
+      end
+    end
+
     private
     def check_combo_of(row)
       return row[0] != "-" && row.uniq.length == 1

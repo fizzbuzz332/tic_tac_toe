@@ -1,10 +1,11 @@
 require_relative "computer"
+require_relative "board"
 
 module TicTacToe
 
   class Game
     def initialize
-      @board = Array.new(3) { Array.new(3) { "-" } }
+      @board = TicTacToe::Board
       @game_over = false
       @user_symbol = ""
       @winner = ""
