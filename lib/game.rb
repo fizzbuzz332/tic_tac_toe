@@ -5,11 +5,12 @@ module TicTacToe
 
   class Game
     def initialize
-      @board = TicTacToe::Board
+      @board = TicTacToe::Board.new
       @game_over = false
       @user_symbol = ""
       @winner = ""
       @computer = TicTacToe::Computer.new
+      @last_mover = ""
     end
 
     def play
@@ -17,7 +18,7 @@ module TicTacToe
       setup_game
       puts "Begin!!!"
       until @game_over
-        print_board
+        @board.print_board
         get_user_move
         check_game_over
       end
@@ -41,14 +42,6 @@ module TicTacToe
       puts "Then I will be #{@computer.symbol} >:)"
     end
 
-    def print_board
-      @board.each do |row|
-        formatted_row = ""
-        row.each { |column| formatted_row += (column + " ") }
-        puts formatted_row
-      end
-    end
-
     def get_user_move
       puts "Write 'h' for help"
       user_move = gets.chomp
@@ -66,7 +59,8 @@ module TicTacToe
         puts "Invalid move."
         get_user_move
       end
-      @board[user_move[0].to_i][user_move[2].to_i] = @user_symbol
+      @board.set_tile(@user_symbol, user_move[0].to_i, user_move[2].to_i)
+      @last_mover = @user_symbol
     end
 
     def validate_user_move(user_move)
@@ -79,10 +73,11 @@ module TicTacToe
     end
 
     def make_computer_move
-      @board.each_with_index do |row, ri|
+      @board.board.each_with_index do |row, ri|
         row.each_with_index do |column, ci|
-          if @board[ri][ci] == "-"
-            @board[ri][ci] = @computer.symbol
+          if @board.board[ri][ci] == "-"
+            @board.set_tile(@computer.symbol, ri, ci)
+            @last_mover = @computer.symbol
             return
           end
         end
@@ -90,26 +85,8 @@ module TicTacToe
     end
 
     def check_game_over
-      @board.each do |row|
-        if row[0] != "-" && row[0] == row[1] && row[1] == row[2]
-          @game_over = true
-          @winner = row[0]
-        end
-      end
-
-      if @board[0][0] != "-"
-        if @board[0][0] == @board[1][1] && @board[1][1] == @board[2][2]
-          @game_over = true
-          @winner = @board[0][0]
-        end
-      end
-
-      if @board[0][2] != "-"
-        if @board[0][2] == @board[1][1] && @board[1][1] == @board[2][0]
-          @game_over = true
-          @winner = @board[0][2]
-        end
-      end    
+      @game_over = @board.is_there_a_winner?
+      @winner = @last_mover
     end
   end
 
