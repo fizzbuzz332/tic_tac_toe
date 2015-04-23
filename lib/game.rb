@@ -15,16 +15,15 @@ module TicTacToe
 
     def play
       puts "Let's play tic tac toe!"
-      puts "Press enter to continue."
-      #setup_game
-      #puts "Begin!!!"
-      #until @game_over
-      #  @board.print_board
-      #  get_user_move
-      #  check_game_over
-      #end
-      #puts "Game over!"
-      #puts "#{@winner} is the winner!"
+      setup_game
+      puts "Begin!!!"
+      until @game_over
+        @board.print_board
+        get_user_move
+        check_game_over
+      end
+      puts "Game over!"
+      puts "#{@winner} is the winner!"
     end
 
     private
