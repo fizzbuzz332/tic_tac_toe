@@ -1,7 +1,6 @@
 require_relative "player"
 
 module TicTacToe
-  class Computer < TicTacToe::Player
-    
+  class User < TicTacToe::Player
   end
 end
