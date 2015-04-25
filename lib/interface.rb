@@ -1,10 +1,10 @@
-module TictacToe
+module TicTacToe
   class Interface
-    def get_request(req)
-      
+    def render(output)
+      print output
     end
 
-    def send_response(res)
+    def request(location)
 
     end
   end

@@ -1,3 +1,5 @@
+require_relative "interface"
+require_relative "router"
 require_relative "user"
 require_relative "computer"
 require_relative "board"
