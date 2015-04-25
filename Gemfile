@@ -1,8 +1,7 @@
 source "https://rubygems.org"
 
-gem 'rspec'
-
-group :development do
+group :development, :test do
+  gem 'rspec'
   gem 'guard'
   gem 'guard-rspec'
 end
