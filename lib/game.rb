@@ -55,7 +55,7 @@ module TicTacToe
     end
 
     def make_move(user_move)
-      until validate_user_move(user_move)
+      unless validate_user_move(user_move)
         puts "Invalid move."
         get_user_move
       end
