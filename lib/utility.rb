@@ -1,11 +1,9 @@
 module TicTacToe
   class Utility
     def snake_to_camel(snake_string)
-      snake_array = snake_string.split("_")
-      snake_array.map.with_index do |word, index|
-        word.capitalize! unless index == 0
-      end
-      return snake_array.join
+      words = snake_string.split("_")
+      words.map.with_index { |word, i| word.capitalize! unless i == 0 }
+      return words.join
     end
 
     def snake_to_capitalized_camel(snake_string)
