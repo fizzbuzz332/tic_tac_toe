@@ -1,3 +1,4 @@
+require_relative "utility"
 require_relative "interface"
 require_relative "router"
 require_relative "user"
