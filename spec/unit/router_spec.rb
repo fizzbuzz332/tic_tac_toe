@@ -15,7 +15,8 @@ describe "Router" do
   it 'should call the right controller method' do
     #home_controller = double("HomeController")
     #allow(home_controller).to receive(:menu).and_return("Welcome!")
-    #@router.add_route(:home, :home_controller, :menu)
+    @router.add_route(:home, :home_controller, :menu)
+    @router.route(:home)
     #expect(@router.route(:home)).to include("Welcome!")
   end
 end

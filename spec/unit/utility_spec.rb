@@ -17,6 +17,10 @@ describe "Utility" do
     it 'should return the same single word' do
       expect(@utility.snake_to_camel("hello")).to eq("hello")
     end
+
+    it 'should accept symbols' do
+      expect(@utility.snake_to_camel(:hello_world)).to eq("helloWorld")
+    end
   end
 
   describe '#snake_to_capitalized_camel' do

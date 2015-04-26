@@ -1,3 +1,5 @@
+require 'utility'
+
 module TicTacToe
   class Router
     attr_reader :routes
@@ -16,9 +18,10 @@ module TicTacToe
     end
 
     def route(route_name)
-      #current_route = @routes[route_name]
-      #class_name = current_route[:controller]
-      #Object.const_get("TicTacToe").const_get()
+      current_route = @routes[route_name]
+      class_name = current_route[:controller]
+      controller = Object.const_get("TicTacToe").const_get(class_name)
+      puts controller
     end
 
     private
